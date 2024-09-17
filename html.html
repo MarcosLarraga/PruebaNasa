@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoreo de Eventos Naturales</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <header>
+        <h1>Eventos Naturales</h1>
+        <nav>
+            <ul>
+                <li><a href="#map">Mapa de Eventos</a></li>
+                <li><a href="#filters">Filtros</a></li>
+                <li><a href="#details">Detalles</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="map">
+            <h2>Mapa de Eventos</h2>
+            <div id="map-container"></div>
+        </section>
+
+        <section id="filters">
+            <h2>Filtros</h2>
+            <form>
+                <label for="event-type">Tipo de Evento:</label>
+                <select id="event-type" name="event-type">
+                    <option value="all">Todos</option>
+                    <option value="fire">Incendios</option>
+                    <option value="storm">Tormentas</option>
+                    <option value="earthquake">Terremotos</option>
+                    <option value="volcano">Erupciones Volcánicas</option>
+                    <option value="tsunami">Tsunamis</option>
+                </select>
+
+                <label for="start-date">Fecha de Inicio:</label>
+                <input type="date" id="start-date" name="start-date">
+
+                <label for="end-date">Fecha de Fin:</label>
+                <input type="date" id="end-date" name="end-date">
+
+                <button type="submit">Filtrar</button>
+            </form>
+        </section>
+
+        <section id="details">
+            <h2>Detalles del Evento</h2>
+            <div id="event-details"></div>
+        </section>
+    </main>
+
+    <footer>
+    </footer>
+</body>
+</html>
