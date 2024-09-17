@@ -47,6 +47,9 @@ nav ul li a:hover {
 /* Secciones principales */
 main {
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 section {
