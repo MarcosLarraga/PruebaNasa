@@ -105,21 +105,21 @@ button:hover {
 
 /* Colores por tipo de evento */
 .event-type-fire {
-    color: #d32f2f;
+    color: #fda500;
 }
 
 .event-type-storm {
-    color: #1976d2;
+    color: #ffd900;
 }
 
 .event-type-earthquake {
-    color: #fbc02d;
+    color: #d32f2f;
 }
 
 .event-type-volcano {
-    color: #e64a19;
+    color: #d32f2f;
 }
 
 .event-type-tsunami {
-    color: #0288d1;
+    color: #d32f2f;
 }
