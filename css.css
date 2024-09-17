@@ -123,3 +123,10 @@ button:hover {
 .event-type-tsunami {
     color: #d32f2f;
 }
+
+#map-container {
+    height: 500px; /* Ajusta la altura según sea necesario */
+    width: 100%;
+    background-color: #e0e0e0;
+}
+
