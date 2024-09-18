@@ -20,14 +20,75 @@ async function fetchEvents() {
     }
 }
 
-// Función para mostrar los eventos en el mapa
+// Crear iconos personalizados
+const fireIcon = L.icon({
+    iconUrl: 'icons/fire.png', // Reemplaza con la URL de tu icono
+    iconSize: [32, 32], // Tamaño del icono
+    iconAnchor: [16, 32], // Punto del icono que se situará en la posición
+    popupAnchor: [0, -32] // Posición del popup respecto al icono
+});
+
+const stormIcon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1146/1146860.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+const earthquakeIcon = L.icon({
+    iconUrl: 'https://static.vecteezy.com/system/resources/previews/025/351/032/non_2x/earthquake-disaster-illustration-free-png.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+const volcanoIcon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2206/2206644.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+const tsunamiIcon = L.icon({
+    iconUrl: 'https://static.vecteezy.com/system/resources/previews/024/295/730/original/tsunami-graphic-clipart-design-free-png.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+// Función para mostrar los eventos en el mapa con los iconos correctos
 function displayEventsOnMap(events) {
     events.forEach(event => {
         const coordinates = event.geometry[0].coordinates;
         const [longitude, latitude] = coordinates;
 
-        // Crear un marcador en la posición del evento
-        const marker = L.marker([latitude, longitude]).addTo(map);
+        // Mostrar la categoría en la consola para depurar
+        console.log('Categoría recibida:', event.categories[0].title);
+
+        // Asignar icono basado en el tipo de evento (asegurarse de que no haya espacios ni mayúsculas)
+        let icon;
+        switch (event.categories[0].title.toLowerCase().trim()) {
+            case 'wildfires':
+                icon = fireIcon;
+                break;
+            case 'severe storms':
+                icon = stormIcon;
+                break;
+            case 'earthquakes':
+                icon = earthquakeIcon;
+                break;
+            case 'volcanoes':
+                icon = volcanoIcon;
+                break;
+            case 'tsunamis':
+                icon = tsunamiIcon;
+                break;
+            default:
+                icon = L.icon({iconUrl: 'icons/default.png', iconSize: [32, 32]});
+        }
+
+        // Crear un marcador con el icono correspondiente
+        const marker = L.marker([latitude, longitude], { icon }).addTo(map);
 
         // Evento al hacer clic en el marcador
         marker.on('click', () => {
