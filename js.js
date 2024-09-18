@@ -1,7 +1,7 @@
 // Crear el mapa en el contenedor con el ID "map-container"
 var map = L.map('map-container').setView([20, 0], 2); // Coordenadas globales con zoom 2
 
-// Agregar un tile layer (capa de imagenes del mapa)
+// Agregar un tile layer (capa de imágenes del mapa)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
@@ -22,35 +22,35 @@ async function fetchEvents() {
 
 // Crear iconos personalizados
 const fireIcon = L.icon({
-    iconUrl: 'icons/fire.png', // Reemplaza con la URL de tu icono
-    iconSize: [32, 32], // Tamaño del icono
-    iconAnchor: [16, 32], // Punto del icono que se situará en la posición
-    popupAnchor: [0, -32] // Posición del popup respecto al icono
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1033/1033592.png', // Fuego
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
 });
 
 const stormIcon = L.icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1146/1146860.png',
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2916/2916574.png', // Tormenta
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
 
 const earthquakeIcon = L.icon({
-    iconUrl: 'https://static.vecteezy.com/system/resources/previews/025/351/032/non_2x/earthquake-disaster-illustration-free-png.png',
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/6078/6078551.png', // Terremoto
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
 
 const volcanoIcon = L.icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2206/2206644.png',
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2206/2206644.png', // Volcán
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
 
 const tsunamiIcon = L.icon({
-    iconUrl: 'https://static.vecteezy.com/system/resources/previews/024/295/730/original/tsunami-graphic-clipart-design-free-png.png',
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1858/1858464.png', // Tsunami
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
@@ -65,7 +65,7 @@ function displayEventsOnMap(events) {
         // Mostrar la categoría en la consola para depurar
         console.log('Categoría recibida:', event.categories[0].title);
 
-        // Asignar icono basado en el tipo de evento (asegurarse de que no haya espacios ni mayúsculas)
+        // Asignar icono basado en el tipo de evento
         let icon;
         switch (event.categories[0].title.toLowerCase().trim()) {
             case 'wildfires':
@@ -84,7 +84,7 @@ function displayEventsOnMap(events) {
                 icon = tsunamiIcon;
                 break;
             default:
-                icon = L.icon({iconUrl: 'icons/default.png', iconSize: [32, 32]});
+                icon = L.icon({ iconUrl: 'icons/default.png', iconSize: [32, 32] });
         }
 
         // Crear un marcador con el icono correspondiente
@@ -114,3 +114,4 @@ function displayEventDetails(event) {
 
 // Llamar a la función para obtener los eventos cuando la página se carga
 fetchEvents();
+ 
