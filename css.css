@@ -71,25 +71,12 @@ h2 {
     gap: 1rem; /* Espacio entre los elementos del formulario */
 }
 
-#filter-form label {
-    margin-bottom: 0.5rem;
-}
-
 #filter-form select,
 #filter-form button {
     padding: 0.5rem;
     border-radius: 5px;
     border: 1px solid #ddd;
     width: 100%; /* Hace que los elementos sean del ancho del contenedor */
-    max-width: 300px; /* Limita el ancho máximo de los elementos */
-    text-align: center;
-}
-
-#filter-form input[type="date"] {
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    width: 100%;
     max-width: 300px; /* Limita el ancho máximo de los elementos */
     text-align: center;
 }
@@ -105,13 +92,32 @@ h2 {
     background: #0056b3;
 }
 
+/* Estilos específicos para los campos de fecha */
+.date-filters {
+    display: flex;
+    gap: 1rem; /* Espacio entre los campos de fecha */
+    align-items: center;
+}
+
+.date-filters label {
+    margin: 0;
+    padding: 0;
+}
+
+.date-filters input[type="date"] {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 150px; /* Ajusta el ancho si es necesario */
+}
+
 #map-container {
     border: 2px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 1200px; /* Aumenta el ancho máximo del mapa */
-    height: 500px; /* Asegúrate de definir el alto del mapa */
+    height: 500px; 
 }
 
 footer {
