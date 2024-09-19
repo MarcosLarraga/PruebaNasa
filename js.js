@@ -27,29 +27,21 @@ async function fetchEvents() {
 
 // Crear iconos personalizados con las URLs correctas
 const fireIcon = L.icon({
-<<<<<<< HEAD
     iconUrl: 'https://static.vecteezy.com/system/resources/previews/011/999/958/non_2x/fire-icon-free-png.png',
-=======
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1033/1033592.png', // Fuego
->>>>>>> e8ba06a64a3de672d5724bcc4c8e6efc0280de80
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
 
 const stormIcon = L.icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2916/2916574.png', // Tormenta
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1146/1146860.png', // Tormenta
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
 
 const earthquakeIcon = L.icon({
-<<<<<<< HEAD
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/3522/3522343.png', // Imagen de terremotos
-=======
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/6078/6078551.png', // Terremoto
->>>>>>> e8ba06a64a3de672d5724bcc4c8e6efc0280de80
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
@@ -111,11 +103,7 @@ function displayEventsOnMap(events) {
                 icon = icebergIcon;
                 break;
             default:
-<<<<<<< HEAD
                 icon = L.icon({iconUrl: 'https://via.placeholder.com/32x32.png', iconSize: [32, 32]});
-=======
-                icon = L.icon({ iconUrl: 'icons/default.png', iconSize: [32, 32] });
->>>>>>> e8ba06a64a3de672d5724bcc4c8e6efc0280de80
         }
         
 
