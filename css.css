@@ -85,6 +85,15 @@ h2 {
     text-align: center;
 }
 
+#filter-form input[type="date"] {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 300px; /* Limita el ancho máximo de los elementos */
+    text-align: center;
+}
+
 #filter-form button {
     background: #007bff;
     color: #fff;

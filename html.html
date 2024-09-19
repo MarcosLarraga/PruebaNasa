@@ -5,14 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitoreo de Eventos Naturales</title>
-
-    <!-- Hoja de estilos personalizada -->
     <link rel="stylesheet" href="css.css">
-
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 </head>
 
@@ -33,20 +27,22 @@
                     <option value="earthquakes">Terremotos</option>
                     <option value="volcanoes">Erupciones Volcánicas</option>
                     <option value="tsunamis">Tsunamis</option>
-                    <option value="sea and lake ice">Icebergs</option> <!-- Opción agregada -->
+                    <option value="sea and lake ice">Icebergs</option> 
                 </select>
-                <!-- Botón para aplicar el filtro -->
+                <label for="start-date">Fecha de Inicio:</label>
+                <input type="date" id="start-date" name="start-date">
+                <label for="end-date">Fecha de Fin:</label>
+                <input type="date" id="end-date" name="end-date">
                 <button type="button" id="filter-button">Filtrar</button>
             </form>
         </section>
 
         <section id="map">
             <h2>Mapa de Eventos</h2>
-            <div id="map-container" style="height: 500px;"></div> <!-- Asegúrate de definir el alto del mapa -->
+            <div id="map-container" style="height: 500px;"></div>
         </section>
     </main>
 
-    <!-- Enlace al script JavaScript -->
     <script src="js.js"></script>
 
     <footer>

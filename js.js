@@ -105,7 +105,6 @@ function displayEventsOnMap(events) {
             default:
                 icon = L.icon({iconUrl: 'https://via.placeholder.com/32x32.png', iconSize: [32, 32]});
         }
-        
 
         // Crear un marcador con el icono correspondiente
         const marker = L.marker([latitude, longitude], { icon }).addTo(map);
@@ -133,17 +132,29 @@ function displayEventDetails(event) {
     `;
 }
 
-// Filtro de eventos basado en el tipo de evento seleccionado
+// Filtro de eventos basado en el tipo de evento y en el rango de fechas seleccionadas
 function filterEventsByType(events) {
-    const eventType = document.getElementById('event-type').value;
-    console.log(`Filtrando por tipo: ${eventType}`);
+    const eventType = document.getElementById('event-type').value.toLowerCase();
+    const startDate = new Date(document.getElementById('start-date').value);
+    const endDate = new Date(document.getElementById('end-date').value);
+    console.log(`Filtrando por tipo: ${eventType}, Fecha de Inicio: ${startDate}, Fecha de Fin: ${endDate}`);
 
-    if (eventType === 'all') {
-        displayEventsOnMap(events); // Si selecciona "Todos", mostramos todos los eventos
-    } else {
-        const filteredEvents = events.filter(event => event.categories[0].title.toLowerCase().trim() === eventType);
-        displayEventsOnMap(filteredEvents); // Solo mostramos los eventos filtrados
+    let filteredEvents = events;
+
+    // Filtrar por tipo de evento
+    if (eventType !== 'all') {
+        filteredEvents = filteredEvents.filter(event => event.categories[0].title.toLowerCase().trim() === eventType);
     }
+
+    // Filtrar por rango de fechas
+    if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+        filteredEvents = filteredEvents.filter(event => {
+            const eventDate = new Date(event.geometry[0].date);
+            return eventDate >= startDate && eventDate <= endDate;
+        });
+    }
+
+    displayEventsOnMap(filteredEvents); // Solo mostramos los eventos filtrados
 }
 
 // Detectar cuando el usuario hace clic en el botón de "Filtrar"
@@ -153,4 +164,3 @@ document.getElementById('filter-button').addEventListener('click', () => {
 
 // Llamar a la función para obtener los eventos cuando la página se carga
 fetchEvents();
- 
