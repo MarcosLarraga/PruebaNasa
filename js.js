@@ -1,7 +1,7 @@
 // Crear el mapa en el contenedor con el ID "map-container"
 var map = L.map('map-container').setView([20, 0], 2); // Coordenadas globales con zoom 2
 
-// Agregar un tile layer (capa de imagenes del mapa)
+// Agregar un tile layer (capa de imágenes del mapa)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
@@ -9,23 +9,28 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // URL de la API de EONET para obtener eventos
 const eonetAPI = "https://eonet.gsfc.nasa.gov/api/v3/events";
 
+// Crear un array para almacenar los marcadores
+let markers = [];
+let eventsData = []; // Variable global para almacenar los eventos obtenidos
+
 // Función para obtener los eventos de la API de EONET
 async function fetchEvents() {
     try {
         const response = await fetch(eonetAPI);
         const data = await response.json();
-        displayEventsOnMap(data.events);
+        eventsData = data.events; // Guardamos los eventos globalmente
+        displayEventsOnMap(eventsData); // Mostramos todos los eventos al cargar la página
     } catch (error) {
         console.error("Error fetching EONET data:", error);
     }
 }
 
-// Crear iconos personalizados
+// Crear iconos personalizados con las URLs correctas
 const fireIcon = L.icon({
-    iconUrl: 'icons/fire.png', // Reemplaza con la URL de tu icono
-    iconSize: [32, 32], // Tamaño del icono
-    iconAnchor: [16, 32], // Punto del icono que se situará en la posición
-    popupAnchor: [0, -32] // Posición del popup respecto al icono
+    iconUrl: 'https://static.vecteezy.com/system/resources/previews/011/999/958/non_2x/fire-icon-free-png.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
 });
 
 const stormIcon = L.icon({
@@ -36,7 +41,7 @@ const stormIcon = L.icon({
 });
 
 const earthquakeIcon = L.icon({
-    iconUrl: 'https://static.vecteezy.com/system/resources/previews/025/351/032/non_2x/earthquake-disaster-illustration-free-png.png',
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/3522/3522343.png', // Imagen de terremotos
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
@@ -56,8 +61,19 @@ const tsunamiIcon = L.icon({
     popupAnchor: [0, -32]
 });
 
+const icebergIcon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/6362/6362942.png', // Imagen de icebergs o glaciares
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
 // Función para mostrar los eventos en el mapa con los iconos correctos
 function displayEventsOnMap(events) {
+    // Primero limpiamos todos los marcadores anteriores del mapa
+    markers.forEach(marker => map.removeLayer(marker));
+    markers = []; // Vaciamos el array de marcadores
+
     events.forEach(event => {
         const coordinates = event.geometry[0].coordinates;
         const [longitude, latitude] = coordinates;
@@ -65,7 +81,7 @@ function displayEventsOnMap(events) {
         // Mostrar la categoría en la consola para depurar
         console.log('Categoría recibida:', event.categories[0].title);
 
-        // Asignar icono basado en el tipo de evento (asegurarse de que no haya espacios ni mayúsculas)
+        // Asignar icono basado en el tipo de evento
         let icon;
         switch (event.categories[0].title.toLowerCase().trim()) {
             case 'wildfires':
@@ -83,12 +99,17 @@ function displayEventsOnMap(events) {
             case 'tsunamis':
                 icon = tsunamiIcon;
                 break;
+            case 'sea and lake ice':  // Icebergs o glaciares
+                icon = icebergIcon;
+                break;
             default:
-                icon = L.icon({iconUrl: 'icons/default.png', iconSize: [32, 32]});
+                icon = L.icon({iconUrl: 'https://via.placeholder.com/32x32.png', iconSize: [32, 32]});
         }
+        
 
         // Crear un marcador con el icono correspondiente
         const marker = L.marker([latitude, longitude], { icon }).addTo(map);
+        markers.push(marker); // Guardamos el marcador en el array de marcadores
 
         // Evento al hacer clic en el marcador
         marker.on('click', () => {
@@ -111,6 +132,24 @@ function displayEventDetails(event) {
         <p><a href="${event.link}" target="_blank">Ver más detalles</a></p>
     `;
 }
+
+// Filtro de eventos basado en el tipo de evento seleccionado
+function filterEventsByType(events) {
+    const eventType = document.getElementById('event-type').value;
+    console.log(`Filtrando por tipo: ${eventType}`);
+
+    if (eventType === 'all') {
+        displayEventsOnMap(events); // Si selecciona "Todos", mostramos todos los eventos
+    } else {
+        const filteredEvents = events.filter(event => event.categories[0].title.toLowerCase().trim() === eventType);
+        displayEventsOnMap(filteredEvents); // Solo mostramos los eventos filtrados
+    }
+}
+
+// Detectar cuando el usuario hace clic en el botón de "Filtrar"
+document.getElementById('filter-button').addEventListener('click', () => {
+    filterEventsByType(eventsData);
+});
 
 // Llamar a la función para obtener los eventos cuando la página se carga
 fetchEvents();
