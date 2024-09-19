@@ -58,10 +58,10 @@ section {
 }
 
 h2 {
-    background: #007bff;
-    color: #fff;
+    color: #333;
     padding: 0.5rem;
     border-radius: 5px;
+    text-align: center;
 }
 
 #filter-form {
@@ -82,6 +82,7 @@ h2 {
     border: 1px solid #ddd;
     width: 100%; /* Hace que los elementos sean del ancho del contenedor */
     max-width: 300px; /* Limita el ancho máximo de los elementos */
+    text-align: center;
 }
 
 #filter-form button {
