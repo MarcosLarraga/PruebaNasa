@@ -1,56 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoreo de Eventos Naturales</title>
-    <link rel="stylesheet" href="css.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <title>Mapa de Eventos Climáticos</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="css.css"> <!-- Archivo CSS externo -->
 </head>
-
 <body>
-
     <header>
-        <h1>Eventos Naturales</h1>
+        <h1>Mapa de Eventos Climáticos</h1>
     </header>
 
     <main>
+        <!-- Contenedor de filtros -->
         <section id="filters">
-            <h2>Eventos</h2>
+            <h2>Filtrar Eventos</h2>
             <form id="filter-form">
-                <select id="event-type" name="event-type">
+                <label for="event-type">Tipo de Evento:</label>
+                <select id="event-type">
                     <option value="all">Todos</option>
                     <option value="wildfires">Incendios</option>
-                    <option value="severe storms">Tormentas</option>
+                    <option value="severe storms">Tormentas severas</option>
                     <option value="earthquakes">Terremotos</option>
-                    <option value="volcanoes">Erupciones Volcánicas</option>
+                    <option value="volcanoes">Volcanes</option>
                     <option value="tsunamis">Tsunamis</option>
-                    <option value="sea and lake ice">Icebergs</option>
+                    <option value="sea and lake ice">Hielo marino y lacustre</option>
                 </select>
+
                 <div class="date-filters">
                     <label for="start-date">Fecha de Inicio:</label>
-                    <input type="date" id="start-date" name="start-date">
-                    <label for="end-date">Fecha de Fin:</label>
-                    <input type="date" id="end-date" name="end-date">
-                </div>
-                <button type="button" id="filter-button">Filtrar</button>
-            </form>
-        </section>        
+                    <input type="date" id="start-date">
 
-        <section id="map">
-            <h2>Mapa de Eventos</h2>
-            <div id="map-container" style="height: 500px;"></div>
+                    <label for="end-date">Fecha de Fin:</label>
+                    <input type="date" id="end-date">
+                </div>
+
+                <button id="filter-button" type="button">Filtrar</button>
+            </form>
+        </section>
+
+        <!-- Contenedor del mapa -->
+        <section id="map-section">
+            <div id="map-container"></div>
+        </section>
+
+        <!-- Contenedor para mostrar los detalles del evento -->
+        <section id="event-details">
+            <h2>Detalles del evento seleccionado</h2>
+            <p>Haz clic en un marcador en el mapa para ver los detalles del evento.</p>
         </section>
     </main>
 
-    <script src="js.js"></script>
-
     <footer>
-        <p>Monitoreo de eventos naturales &copy; 2023</p>
+        <p>&copy; 2024 Mapa de Eventos Climáticos - Todos los derechos reservados.</p>
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js.js"></script> <!-- Incluir el archivo JS externo -->
 </body>
-
 </html>

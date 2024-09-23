@@ -11,6 +11,7 @@ body {
     color: #333;
     background-color: #f4f4f4;
     line-height: 1.6;
+    padding-bottom: 2rem; /* Añadir espacio en la parte inferior para evitar solapamiento del footer */
 }
 
 header {
@@ -24,37 +25,17 @@ header h1 {
     margin-bottom: 0.5rem;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 1rem;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
 main {
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el contenido horizontalmente */
+    align-items: center;
 }
 
 section {
     margin-bottom: 2rem;
     width: 100%;
-    max-width: 1200px; /* Aumenta el ancho máximo del contenido */
+    max-width: 1200px; /* Limita el ancho del contenido */
 }
 
 h2 {
@@ -62,12 +43,14 @@ h2 {
     padding: 0.5rem;
     border-radius: 5px;
     text-align: center;
+    background-color: #e2e2e2; /* Fondo sutil para resaltar el título */
 }
 
+/* Formulario de filtro */
 #filter-form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra los elementos del formulario horizontalmente */
+    align-items: center;
     gap: 1rem; /* Espacio entre los elementos del formulario */
 }
 
@@ -76,8 +59,8 @@ h2 {
     padding: 0.5rem;
     border-radius: 5px;
     border: 1px solid #ddd;
-    width: 100%; /* Hace que los elementos sean del ancho del contenedor */
-    max-width: 300px; /* Limita el ancho máximo de los elementos */
+    width: 100%;
+    max-width: 300px;
     text-align: center;
 }
 
@@ -92,34 +75,31 @@ h2 {
     background: #0056b3;
 }
 
-/* Estilos específicos para los campos de fecha */
+/* Estilos para los campos de fecha */
 .date-filters {
     display: flex;
-    gap: 1rem; /* Espacio entre los campos de fecha */
+    gap: 1rem;
     align-items: center;
-}
-
-.date-filters label {
-    margin: 0;
-    padding: 0;
 }
 
 .date-filters input[type="date"] {
     padding: 0.5rem;
     border-radius: 5px;
     border: 1px solid #ddd;
-    width: 150px; /* Ajusta el ancho si es necesario */
+    width: 150px;
 }
 
+/* Estilos para el mapa */
 #map-container {
     border: 2px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 1200px; /* Aumenta el ancho máximo del mapa */
     height: 500px; 
+    max-width: 1200px; /* Ancho máximo del mapa */
 }
 
+/* Estilos para el footer */
 footer {
     background: #333;
     color: #fff;
