@@ -43,7 +43,7 @@ h2 {
     padding: 0.5rem;
     border-radius: 5px;
     text-align: center;
-    background-color: #e2e2e2; /* Fondo sutil para resaltar el título */
+    background-color: #bdbdbd; /* Fondo sutil para resaltar el título */
 }
 
 /* Formulario de filtro */
@@ -58,7 +58,7 @@ h2 {
 #filter-form button {
     padding: 0.5rem;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #333;
     width: 100%;
     max-width: 300px;
     text-align: center;

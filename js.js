@@ -1,10 +1,30 @@
-// Crear el mapa en el contenedor con el ID "map-container"
-var map = L.map('map-container').setView([20, 0], 2); // Coordenadas globales con zoom 2
-
-// Agregar un tile layer (capa de imágenes del mapa)
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// Definir las capas base
+var openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+});
+
+var openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)'
+});
+
+var esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+
+// Crear el mapa y establecer la capa base por defecto
+var map = L.map('map-container', {
+    center: [20, 0], 
+    zoom: 2, 
+    layers: [openStreetMap]  // Capa base por defecto
+});
+
+// Añadir el control de capas
+var baseMaps = {
+    "OpenStreetMap": openStreetMap,
+    "OpenTopoMap": openTopoMap,
+    "ESRI Satellite": esriSatellite
+};
+L.control.layers(baseMaps).addTo(map);
 
 // URL de la API de EONET para obtener eventos
 const eonetAPI = "https://eonet.gsfc.nasa.gov/api/v3/events";
@@ -129,20 +149,21 @@ function filterEventsByType(events) {
         filteredEvents = filteredEvents.filter(event => event.categories[0].title.toLowerCase().trim() === eventType);
     }
 
-    if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+    if (!isNaN(startDate) && !isNaN(endDate)) {
         filteredEvents = filteredEvents.filter(event => {
             const eventDate = new Date(event.geometry[0].date);
             return eventDate >= startDate && eventDate <= endDate;
         });
     }
 
-    displayEventsOnMap(filteredEvents);
+    return filteredEvents;
 }
 
-// Detectar clic en el botón de filtro
+// Función para aplicar los filtros
 document.getElementById('filter-button').addEventListener('click', () => {
-    filterEventsByType(eventsData);
+    const filteredEvents = filterEventsByType(eventsData);
+    displayEventsOnMap(filteredEvents);
 });
 
-// Llamar a la función para obtener los eventos
+// Llamar a la función para obtener los eventos al cargar la página
 fetchEvents();
