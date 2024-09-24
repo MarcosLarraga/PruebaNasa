@@ -26,6 +26,22 @@ var baseMaps = {
 };
 L.control.layers(baseMaps).addTo(map);
 
+
+const apiKey = 'e2870774a12d168577b9e044c7eba143'; // Reemplaza con tu API Key
+
+async function getWeather(lat, lon) {
+    const weatherAPI = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    try {
+        const response = await fetch(weatherAPI);
+        const weatherData = await response.json();
+        return weatherData;
+    } catch (error) {
+        console.error("Error fetching weather data:", error);
+    }
+}
+
+
+
 // URL de la API de EONET para obtener eventos
 const eonetAPI = "https://eonet.gsfc.nasa.gov/api/v3/events";
 let markers = [];
@@ -126,16 +142,22 @@ function displayEventsOnMap(events) {
 }
 
 // Función para mostrar los detalles del evento
-function displayEventDetails(event) {
+async function displayEventDetails(event) {
+    const lat = event.geometry[0].coordinates[1];
+    const lon = event.geometry[0].coordinates[0];
+    const weather = await getWeather(lat, lon);
+
     const detailsContainer = document.getElementById('event-details');
     detailsContainer.innerHTML = `
         <h3>${event.title}</h3>
         <p><strong>Categoría:</strong> ${event.categories[0].title}</p>
         <p><strong>Fecha de inicio:</strong> ${new Date(event.geometry[0].date).toLocaleDateString()}</p>
-        <p><strong>Coordenadas:</strong> [${event.geometry[0].coordinates[1]}, ${event.geometry[0].coordinates[0]}]</p>
+        <p><strong>Coordenadas:</strong> [${lat}, ${lon}]</p>
+        <p><strong>Clima actual:</strong> ${weather.weather[0].description}, ${weather.main.temp}°C</p>
         <p><a href="${event.link}" target="_blank">Ver más detalles</a></p>
     `;
 }
+
 
 // Filtro de eventos basado en tipo y fechas
 function filterEventsByType(events) {
