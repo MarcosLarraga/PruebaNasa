@@ -11,11 +11,11 @@ var esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/ser
     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
 
-// Crear el mapa y establecer la capa base por defecto
+// Crear el mapa y establecer la capa base
 var map = L.map('map-container', {
     center: [20, 0], 
     zoom: 2, 
-    layers: [openStreetMap]  // Capa base por defecto
+    layers: [openStreetMap]
 });
 
 // Añadir el control de capas
@@ -27,7 +27,7 @@ var baseMaps = {
 L.control.layers(baseMaps).addTo(map);
 
 
-const apiKey = 'e2870774a12d168577b9e044c7eba143'; // Reemplaza con tu API Key
+const apiKey = 'e2870774a12d168577b9e044c7eba143';
 
 async function getWeather(lat, lon) {
     const weatherAPI = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
@@ -40,14 +40,12 @@ async function getWeather(lat, lon) {
     }
 }
 
-
-
 // URL de la API de EONET para obtener eventos
 const eonetAPI = "https://eonet.gsfc.nasa.gov/api/v3/events";
 let markers = [];
 let eventsData = [];
 
-// Función para obtener los eventos de la API de EONET
+//obtener los eventos de la API de EONET
 async function fetchEvents() {
     try {
         const response = await fetch(eonetAPI);
@@ -59,7 +57,7 @@ async function fetchEvents() {
     }
 }
 
-// Crear iconos personalizados
+// Crear iconos del mapa
 const fireIcon = L.icon({
     iconUrl: 'https://static.vecteezy.com/system/resources/previews/011/999/958/non_2x/fire-icon-free-png.png',
     iconSize: [32, 32],
@@ -97,7 +95,7 @@ const icebergIcon = L.icon({
     popupAnchor: [0, -32]
 });
 
-// Función para mostrar los eventos en el mapa
+// mostrar los eventos en el mapa
 function displayEventsOnMap(events) {
     markers.forEach(marker => map.removeLayer(marker));
     markers = [];
@@ -141,7 +139,7 @@ function displayEventsOnMap(events) {
     });
 }
 
-// Función para mostrar los detalles del evento
+// mostrar los detalles del evento
 async function displayEventDetails(event) {
     const lat = event.geometry[0].coordinates[1];
     const lon = event.geometry[0].coordinates[0];
@@ -181,11 +179,10 @@ function filterEventsByType(events) {
     return filteredEvents;
 }
 
-// Función para aplicar los filtros
+//aplicar los filtros
 document.getElementById('filter-button').addEventListener('click', () => {
     const filteredEvents = filterEventsByType(eventsData);
     displayEventsOnMap(filteredEvents);
 });
 
-// Llamar a la función para obtener los eventos al cargar la página
 fetchEvents();
