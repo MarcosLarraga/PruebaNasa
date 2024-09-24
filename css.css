@@ -8,20 +8,37 @@
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    color: #333;
+    color: #ffffff;
     background-color: #f4f4f4;
     line-height: 1.6;
 }
 
+/* Estilos para el encabezado */
 header {
-    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d51bb;
     color: #fff;
     padding: 1rem 0;
     text-align: center;
 }
 
+header img {
+    width: 80px;
+    height: auto;
+    margin-right: 20px;
+}
+
 header h1 {
-    margin-bottom: 0.5rem;
+    margin: 0;
+}
+
+#miImagen {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #333;
 }
 
 main {
@@ -30,7 +47,7 @@ main {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #d5e0f3;
+    background-color: #313131;
 }
 
 section {
@@ -40,7 +57,7 @@ section {
 }
 
 h2 {
-    color: #333;
+    color: #ffffff;
     padding: 1.5rem;
     border-radius: 5px;
     text-align: center; 
@@ -65,14 +82,14 @@ h2 {
 }
 
 #filter-form button {
-    background: #007bff;
+    background: #0d51bb;
     color: #fff;
     border: none;
     cursor: pointer;
 }
 
 #filter-form button:hover {
-    background: #0056b3;
+    background: #0d51bb;
 }
 
 /* Estilos para los campos de fecha */
@@ -101,7 +118,7 @@ h2 {
 
 /* Estilos para el footer */
 footer {
-    background: #333;
+    background: #0d51bb;
     color: #fff;
     text-align: center;
     padding: 1rem 0;
