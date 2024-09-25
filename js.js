@@ -13,7 +13,7 @@ var esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/ser
 
 // Crear el mapa y establecer la capa base
 var map = L.map('map-container', {
-    center: [20, 0],
+    center: [20, 0], 
     zoom: 2, 
     layers: [openStreetMap]
 });
