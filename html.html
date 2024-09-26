@@ -15,7 +15,6 @@
 
     <main>
         <section id="filters" class="card">
-            <h2>Filtrar Eventos</h2>
             <form id="filter-form">
                 <div class="form-group">
                     <label for="event-type">Tipo de Evento:</label>
@@ -39,18 +38,21 @@
                     <label for="end-date">Fecha de Fin:</label>
                     <input type="date" id="end-date">
                 </div>
-                
+
                 <button id="filter-button" type="button">Filtrar</button>
             </form>
         </section>
 
-        <section id="map-section">
-            <div id="map-container"></div>
-        </section>
+        <section id="map-and-details">
+            <div id="map-section">
+                <div id="map-container"></div>
+            </div>
 
-        <section id="event-details" class="card">
-            <h2>Detalles del evento seleccionado</h2>
-            <p>Haz clic en un marcador en el mapa para ver los detalles del evento.</p>
+            <div id="event-details" class="card">
+                <h2>Detalles del evento seleccionado</h2>
+                <p>Haz clic en un marcador en el mapa para ver los detalles del evento.</p>
+                <a href="#" id="more-details" class="link">Ver más detalles</a>
+            </div>
         </section>
     </main>
 
