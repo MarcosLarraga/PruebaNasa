@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Eventos Climáticos</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="MAIN.css">
+</head>
+<body>
+    <header>
+        <img src="../PruebaNasa/nasa_logo.png" alt="Logo de la NASA" id="nasaImg">
+        <h1>Mapa de Eventos Climáticos</h1>
+    </header>
+
+    <main>
+        <section id="filters" class="card">
+            <h2>Filtrar Eventos</h2>
+            <form id="filter-form">
+                <div class="form-group">
+                    <label for="event-type">Tipo de Evento:</label>
+                    <select id="event-type">
+                        <option value="all">Todos</option>
+                        <option value="wildfires">Incendios</option>
+                        <option value="severe storms">Tormentas severas</option>
+                        <option value="earthquakes">Terremotos</option>
+                        <option value="volcanoes">Volcanes</option>
+                        <option value="tsunamis">Tsunamis</option>
+                        <option value="sea and lake ice">Hielo marino y lacustre</option>
+                    </select>
+                </div>
+
+                <div class="form-group date-filters">
+                    <label for="start-date">Fecha de Inicio:</label>
+                    <input type="date" id="start-date">
+                </div>
+
+                <div class="form-group date-filters">
+                    <label for="end-date">Fecha de Fin:</label>
+                    <input type="date" id="end-date">
+                </div>
+                
+                <button id="filter-button" type="button">Filtrar</button>
+            </form>
+        </section>
+
+        <section id="map-section">
+            <div id="map-container"></div>
+        </section>
+
+        <section id="event-details" class="card">
+            <h2>Detalles del evento seleccionado</h2>
+            <p>Haz clic en un marcador en el mapa para ver los detalles del evento.</p>
+        </section>
+    </main>
+
+    <footer>
+        <img src="../PruebaNasa/nasa_Letra.png" alt="Logo de la NASA" id="nasaImg">
+        <p>&copy; 2024 Mapa de Eventos Climáticos - Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="/MAIN.js"></script>
+</body>
+</html>
