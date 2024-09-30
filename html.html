@@ -55,13 +55,28 @@
                 <p>Haz clic en un marcador en el mapa para ver los detalles del evento.</p>
                 <a href="#" id="more-details" class="link">Ver más detalles</a>
             </div>
+
+            <div id="loading-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <p>Cargando eventos...</p>
+                    <img src="https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_512.gif" alt="cargando" id="cargandogift">
+                </div>
+            </div>
+            
+            
         </section>
     </main>
 
     <footer>
         <img src="../PruebaNasa/nasa_Letra.png" alt="Logo de la NASA" id="nasaImg">
         <p>&copy; 2024 Mapa de Eventos Climáticos - Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="https://www.sanvalero.es/" target="_blank">Centro San Valero</a> | 
+            <a href="https://www.nasa.gov" target="_blank">NASA</a>
+        </div>
     </footer>
+    
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="js.js"></script>

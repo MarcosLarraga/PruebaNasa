@@ -62,22 +62,79 @@ h2 {
     padding-top: 13px; 
 }
 
-/* Estilos para la sección del mapa y detalles */
+/* Estilos para la sección de detalles del evento */
+#event-details {
+    flex: 0 0 300px;
+    margin-top: 8%;
+    background: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra */
+    position: relative; /* Posición relativa para efectos de fondo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar contenido */
+}
+
+/* Ajustes en la sección de mapa y detalles */
 #map-and-details {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centrar la sección */
     align-items: flex-start;
 }
 
-/* Ajustes para el mapa y los detalles */
+/* Mantener la sección del mapa flexible */
 #map-section {
     flex: 1;
     margin-right: 1rem;
 }
 
-#event-details {
-    flex: 0 0 300px;
+/* Estilos para el modal */
+.modal {
+    display: none; /* Ocultar el modal por defecto */
+    position: fixed; /* Mantener el modal en la misma posición */
+    z-index: 1000; /* Asegurarse de que esté en la parte superior */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con opacidad */
+    justify-content: center; /* Centrar el contenido */
+    align-items: center; /* Centrar el contenido */
+    color: black;
 }
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #0d51bb; /* Fondo blanco */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Centrar texto */
+}
+
+/* Botón para cerrar el modal */
+.close-button {
+    color: #aaa; /* Color del texto */
+    float: right; /* Posicionar a la derecha */
+    font-size: 28px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    cursor: pointer; /* Cambiar el cursor al pasar */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black; /* Color al pasar el mouse */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambiar cursor */
+}
+
+#cargandogift {
+    width: 46px; /* Ancho deseado */
+    height: auto; /* Mantener la proporción */
+    display: block; /* Para centrarlo */
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+
 
 /* Formulario de filtro */
 #filter-form {
@@ -102,7 +159,6 @@ h2 {
     gap: 1rem;
 }
 
-/*-*/
 
 #filter-form select,
 #filter-form button {
@@ -163,6 +219,21 @@ footer img {
     height: auto;
     margin-right: 20px;
 }
+
+.footer-links {
+    margin-top: 10px; /* Espaciado arriba de los enlaces */
+}
+
+.footer-links a {
+    color: #ff0000; /* Color de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+    margin-left: 15px; /* Espacio entre los enlaces */
+}
+
+.footer-links a:hover {
+    text-decoration: underline; /* Subrayar al pasar el mouse */
+}
+
 
 /* Estilos para el enlace "Ver más detalles" */
 .link {

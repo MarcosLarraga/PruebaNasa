@@ -139,6 +139,39 @@ function displayEventsOnMap(events) {
     });
 }
 
+async function fetchEvents() {
+    const loadingModal = document.getElementById('loading-modal');
+    loadingModal.style.display = 'flex'; // Mostrar el modal
+
+    try {
+        const response = await fetch(eonetAPI);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+        eventsData = data.events;
+        displayEventsOnMap(eventsData);
+    } catch (error) {
+        console.error("Error fetching EONET data:", error);
+        alert("No se pudieron cargar los eventos climáticos. Intenta de nuevo más tarde.");
+    } finally {
+        loadingModal.style.display = 'none'; // Ocultar el modal al final
+    }
+}
+
+// Cerrar el modal al hacer clic en el botón de cerrar
+document.querySelector('.close-button').addEventListener('click', () => {
+    document.getElementById('loading-modal').style.display = 'none';
+});
+
+// Cerrar el modal al hacer clic fuera de él
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('loading-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+
+
 // mostrar los detalles del evento
 async function displayEventDetails(event) {
     const lat = event.geometry[0].coordinates[1];
